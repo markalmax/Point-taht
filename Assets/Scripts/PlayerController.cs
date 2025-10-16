@@ -3,10 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Movement Settings")]
+    [SerializeField]
     public float moveSpeed = 10f;
     public float maxVelocity = 10f;
-
     private Rigidbody2D rb;
     private Vector2 moveInput;
     private PlayerInput playerInput;
@@ -44,13 +43,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Apply movement in FixedUpdate for consistent physics
         if (moveInput != Vector2.zero)
         {
-            // Add force in the direction of movement
             rb.AddForce(moveInput.normalized * moveSpeed);
-
-            // Clamp velocity to max speed
             if (rb.linearVelocity.magnitude > maxVelocity)
             {
                 rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
