@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     public float moveSpeed = 10f;
-    public float maxVelocity = 10f;
+    public float maxVelocity = 10f; 
+    public float reelSpeedMult = 0.1f;
     private Rigidbody2D rb;
     private LineRenderer lr;
     private DistanceJoint2D dj;
@@ -57,11 +58,10 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = moveAction.ReadValue<Vector2>();
         mospos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-    }
+    }   
     
     private void OnGrapplePressed(InputAction.CallbackContext ctx)
     {
-        // perform grapple (same logic that ran when input was true)
         RaycastHit2D hit = Physics2D.Raycast(transform.position, mospos - (Vector2)transform.position, Mathf.Infinity, LayerMask.GetMask("Ground"));
         if (hit)
         {
@@ -85,16 +85,15 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (moveInput != Vector2.zero)
+        rb.AddForce(new Vector2(moveInput.x, 0) * moveSpeed);
+        if(rb.linearVelocity.magnitude > maxVelocity)
         {
-            rb.AddForce(moveInput.normalized * moveSpeed);
-            if (rb.linearVelocity.magnitude > maxVelocity)
-            {
-                rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
-            }
+            rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
         }
-        if(isGrappling){
+        if(isGrappling)
+        {
             lr.SetPosition(0, transform.position);
+            dj.distance -= moveInput.y*reelSpeedMult;
         }
     }
 }
