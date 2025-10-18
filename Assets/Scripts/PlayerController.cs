@@ -15,6 +15,10 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction moveAction;
     private InputAction grapple;
+    
+    // cached subscription delegates so we can unsubscribe cleanly
+    private System.Action<InputAction.CallbackContext> onGrapplePerformed;
+    private System.Action<InputAction.CallbackContext> onGrappleCanceled;
 
     void Awake()
     {
@@ -36,18 +40,47 @@ public class PlayerController : MonoBehaviour
     {
         moveAction.Enable();
         grapple.Enable();
+        // set up callbacks
+        onGrapplePerformed = ctx => OnGrapplePressed(ctx);
+        onGrappleCanceled = ctx => OnGrappleReleased(ctx);
+        grapple.performed += onGrapplePerformed;
+        grapple.canceled += onGrappleCanceled;
         
     }
     void OnDisable()
     {
         moveAction.Disable();
+        grapple.performed -= onGrapplePerformed;
+        grapple.canceled -= onGrappleCanceled;
         grapple.Disable();
     }
     void Update()
     {
         moveInput = moveAction.ReadValue<Vector2>();
-        grappleInput = grapple.ReadValue<float>() > 0.5f;
         mospos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+    }
+    
+    private void OnGrapplePressed(InputAction.CallbackContext ctx)
+    {
+        // perform grapple (same logic that ran when input was true)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, mospos - (Vector2)transform.position, Mathf.Infinity, LayerMask.GetMask("Ground"));
+        if (hit)
+        {
+            dj.enabled = true;
+            dj.connectedAnchor = hit.point;
+            dj.distance = Vector2.Distance(transform.position, hit.point);
+            lr.enabled = true;
+            lr.positionCount = 2;
+            lr.SetPosition(0, transform.position);
+            lr.SetPosition(1, hit.point);
+        }
+    }
+
+    private void OnGrappleReleased(InputAction.CallbackContext ctx)
+    {
+        dj.enabled = false;
+        lr.enabled = false;
+        lr.positionCount = 0;
     }
     void FixedUpdate()
     {
@@ -58,26 +91,6 @@ public class PlayerController : MonoBehaviour
             {
                 rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
             }
-        }
-        if (grappleInput)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, mospos - (Vector2)transform.position, Mathf.Infinity, LayerMask.GetMask("Ground"));
-            if (hit)
-            {
-                dj.enabled = true;
-                dj.connectedAnchor = hit.point;
-                dj.distance = Vector2.Distance(transform.position, hit.point);
-                lr.enabled = true;
-                lr.positionCount = 2;
-                lr.SetPosition(0, transform.position);
-                lr.SetPosition(1, hit.point);
-            }
-        }
-        else
-        {
-            dj.enabled = false;
-            lr.enabled = false;
-            lr.positionCount = 0;
         }
     }
 }
