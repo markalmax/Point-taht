@@ -86,14 +86,26 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         rb.AddForce(new Vector2(moveInput.x, 0) * moveSpeed);
-        if(rb.linearVelocity.magnitude > maxVelocity)
+        if (rb.linearVelocity.magnitude > maxVelocity)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
         }
-        if(isGrappling)
+        if (isGrappling)
         {
             lr.SetPosition(0, transform.position);
-            dj.distance -= moveInput.y*reelSpeedMult;
+            if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult;
+        }
+    }
+    public bool isGrounded()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, LayerMask.GetMask("Ground"));
+        return hit.collider != null;
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Lava"))
+        {
+            Destroy(gameObject);
         }
     }
 }
