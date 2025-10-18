@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,8 +16,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction moveAction;
     private InputAction grapple;
-    
-    // cached subscription delegates so we can unsubscribe cleanly
+    private bool isGrappling;    
     private System.Action<InputAction.CallbackContext> onGrapplePerformed;
     private System.Action<InputAction.CallbackContext> onGrappleCanceled;
 
@@ -40,7 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         moveAction.Enable();
         grapple.Enable();
-        // set up callbacks
         onGrapplePerformed = ctx => OnGrapplePressed(ctx);
         onGrappleCanceled = ctx => OnGrappleReleased(ctx);
         grapple.performed += onGrapplePerformed;
@@ -66,6 +65,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, mospos - (Vector2)transform.position, Mathf.Infinity, LayerMask.GetMask("Ground"));
         if (hit)
         {
+            isGrappling = true;
             dj.enabled = true;
             dj.connectedAnchor = hit.point;
             dj.distance = Vector2.Distance(transform.position, hit.point);
@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
         dj.enabled = false;
         lr.enabled = false;
         lr.positionCount = 0;
+        isGrappling = false;
     }
     void FixedUpdate()
     {
@@ -91,6 +92,9 @@ public class PlayerController : MonoBehaviour
             {
                 rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
             }
+        }
+        if(isGrappling){
+            lr.SetPosition(0, transform.position);
         }
     }
 }
