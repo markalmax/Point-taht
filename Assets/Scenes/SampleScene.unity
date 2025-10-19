@@ -653,6 +653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle
       objectReference: {fileID: 0}
+    - target: {fileID: 2317392946527775943, guid: 1bbc54181f464eb4b86c2b09d8ab6639, type: 3}
+      propertyPath: maxVelocity
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6532084976449891810, guid: 1bbc54181f464eb4b86c2b09d8ab6639, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -749,6 +753,10 @@ PrefabInstance:
     - target: {fileID: 6543378205366658491, guid: af60cfecb555c234baa135d6f3108c75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7837612071338460476, guid: af60cfecb555c234baa135d6f3108c75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8694122127329813066, guid: af60cfecb555c234baa135d6f3108c75, type: 3}
       propertyPath: m_Name
