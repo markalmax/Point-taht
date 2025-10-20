@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Lava"))
         {
-            Destroy(gameObject);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
         }
     }
 }

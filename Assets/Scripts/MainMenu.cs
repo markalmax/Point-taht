@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     public GameObject info;
     public void StartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void levelsMenu()
     {
