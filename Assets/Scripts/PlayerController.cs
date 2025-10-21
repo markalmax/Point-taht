@@ -93,7 +93,8 @@ public class PlayerController : MonoBehaviour
         if (isGrappling)
         {
             lr.SetPosition(0, transform.position);
-            if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult;
+            //if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult;
+            if(isGrounded()&&moveInput.x!=0)dj.distance -= 0.1f;
         }
     }
     public bool isGrounded()
