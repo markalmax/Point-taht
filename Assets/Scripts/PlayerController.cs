@@ -6,8 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField]
     public float moveSpeed = 10f;
-    public float maxVelocity = 10f; 
+    public float maxVelocity = 10f;
     public float reelSpeedMult = 0.1f;
+    public float maxGrappleDistance = 20f;
     private Rigidbody2D rb;
     private LineRenderer lr;
     private DistanceJoint2D dj;
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour
     
     private void OnGrapplePressed(InputAction.CallbackContext ctx)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, mospos - (Vector2)transform.position, Mathf.Infinity, LayerMask.GetMask("Ground"));
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, mospos - (Vector2)transform.position, maxGrappleDistance, LayerMask.GetMask("Ground"));
         if (hit)
         {
             isGrappling = true;
@@ -93,8 +94,8 @@ public class PlayerController : MonoBehaviour
         if (isGrappling)
         {
             lr.SetPosition(0, transform.position);
-            //if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult;
-            if(isGrounded()&&moveInput.x!=0)dj.distance -= 0.1f;
+            //if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult; (reeling)
+            if(isGrounded()&&moveInput.x!=0)dj.distance -= 1f * Time.deltaTime;
         }
     }
     public bool isGrounded()
