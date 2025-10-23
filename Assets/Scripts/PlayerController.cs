@@ -105,9 +105,15 @@ public class PlayerController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Lava"))
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        }
+        if (collision.gameObject.CompareTag("Lose"))lose();
+        if (collision.gameObject.CompareTag("Win"))win();
+    }
+    public void win()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+    public void lose()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }
