@@ -4,6 +4,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField]
     public GameObject player;
+    public float cameraSize = 10f;
     public float smoothness = 0.1f;
     public float shakeIntensityMultiplier = 0.1f;
     public float maxShakeIntensity = 0.5f;
@@ -13,10 +14,12 @@ public class CameraController : MonoBehaviour
     public Vector2 offset;
     private Vector3 originalPosition;
     private Rigidbody2D rb;
+    private Camera cam;
     private float shakeTime;
 
     void Start()
     {
+        cam = GetComponent<Camera>();
         if (player != null)
         {
             rb = player.GetComponent<Rigidbody2D>();
@@ -26,6 +29,8 @@ public class CameraController : MonoBehaviour
     void FixedUpdate()
     {
         if (player == null) return;
+        float cameraSizeSmoothness = cam.orthographicSize;
+        cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, cameraSize, cameraSizeSmoothness * Time.fixedDeltaTime);
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
