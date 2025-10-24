@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private LineRenderer lr;
     private DistanceJoint2D dj;
+    private GameManager gm;
     private Vector2 moveInput;
     private bool grappleInput;
     private Vector2 mospos;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         lr = GetComponent<LineRenderer>();
         dj = GetComponent<DistanceJoint2D>();
+        gm = FindFirstObjectByType<GameManager>();
     }
     void OnEnable()
     {
@@ -110,10 +113,12 @@ public class PlayerController : MonoBehaviour
     }
     public void win()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        PlayerPrefs.SetFloat("HighScore", math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));
+        Debug.Log(gm.timer);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
     }
     public void lose()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
     }
 }
