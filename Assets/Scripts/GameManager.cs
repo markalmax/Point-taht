@@ -16,12 +16,12 @@ public class GameManager : MonoBehaviour
             float highScore = PlayerPrefs.GetFloat("HighScore");
             Debug.Log(highScore);
             TimeSpan time = TimeSpan.FromSeconds(highScore);
-            highScoreText.text = "Best Time:" + time.ToString(@"mm\:ss\:fff");
+            highScoreText.text = time.ToString(@"mm\:ss\:fff");
             Debug.Log(time.ToString(@"mm\:ss\:fff"));
         }
         else
         {
-            highScoreText.text = "Best Time:--:--:---";
+            highScoreText.text = "--:--:---";
         }
     }
     void Update()
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        speedText.text = "Speed: " + rb.linearVelocity.magnitude.ToString("F1");
+        speedText.text = rb.linearVelocity.magnitude.ToString("F1") + " Unit/Sec";
         timer += Time.deltaTime;
         TimeSpan time = TimeSpan.FromSeconds(timer);
         timerText.text = time.ToString(@"mm\:ss\:fff");
