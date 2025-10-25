@@ -10,10 +10,12 @@ public class PlayerController : MonoBehaviour
     public float maxVelocity = 10f;
     public float reelSpeedMult = 0.1f;
     public float maxGrappleDistance = 20f;
+    public PhysicsMaterial2D ball;
     private Rigidbody2D rb;
     private LineRenderer lr;
     private DistanceJoint2D dj;
     private GameManager gm;
+    private Collider2D col;
     private Vector2 moveInput;
     private bool grappleInput;
     private Vector2 mospos;
@@ -37,6 +39,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         lr = GetComponent<LineRenderer>();
         dj = GetComponent<DistanceJoint2D>();
         gm = FindFirstObjectByType<GameManager>();
@@ -94,12 +97,18 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
         }
+        
         if (isGrappling)
         {
             lr.SetPosition(0, transform.position);
             //if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult; (reeling)
-            if(isGrounded()&&moveInput.x!=0)dj.distance -= 1f * Time.deltaTime;
+            if (isGrounded() && moveInput.x != 0) dj.distance -= 1f * Time.deltaTime;
         }
+        if (!isGrappling && isGrounded())
+        {
+            col.sharedMaterial = ball;
+        }
+        else col.sharedMaterial = null;
     }
     public bool isGrounded()
     {
