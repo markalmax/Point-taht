@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
@@ -32,7 +31,7 @@ public class CameraController : MonoBehaviour
         float cameraSizeSmoothness = cam.orthographicSize;
         cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, cameraSize, cameraSizeSmoothness * Time.fixedDeltaTime);
 
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
         Vector2 smoothedPos = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), playerPos + offset, smoothness);
         originalPosition = new Vector3(smoothedPos.x, smoothedPos.y, transform.position.z);
