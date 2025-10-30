@@ -458,6 +458,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &92223546 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5784605256923035649, guid: 8c836a3c5cfd97048b934c4b6e8968e0, type: 3}
+  m_PrefabInstance: {fileID: 8983267198909066541}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &128967134
 GameObject:
   m_ObjectHideFlags: 0
@@ -5370,6 +5381,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1394303928}
     - target: {fileID: 3639058568620644680, guid: 99b5fa35763c119438d376b216483107, type: 3}
+      propertyPath: startText
+      value: 
+      objectReference: {fileID: 92223546}
+    - target: {fileID: 3639058568620644680, guid: 99b5fa35763c119438d376b216483107, type: 3}
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1495120226}
@@ -5495,6 +5510,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 457188856396110546, guid: 8c836a3c5cfd97048b934c4b6e8968e0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.5999756
+      objectReference: {fileID: 0}
     - target: {fileID: 1927190873307690375, guid: 8c836a3c5cfd97048b934c4b6e8968e0, type: 3}
       propertyPath: m_Name
       value: UI

@@ -449,6 +449,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1279898966}
     - target: {fileID: 3639058568620644680, guid: 99b5fa35763c119438d376b216483107, type: 3}
+      propertyPath: startText
+      value: 
+      objectReference: {fileID: 1130433960}
+    - target: {fileID: 3639058568620644680, guid: 99b5fa35763c119438d376b216483107, type: 3}
       propertyPath: timerText
       value: 
       objectReference: {fileID: 1513160315}
@@ -705,6 +709,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 5546112520171366371, guid: 8c836a3c5cfd97048b934c4b6e8968e0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.5999756
+      objectReference: {fileID: 0}
     - target: {fileID: 5958199422223254643, guid: 8c836a3c5cfd97048b934c4b6e8968e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.69171
@@ -750,6 +758,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c836a3c5cfd97048b934c4b6e8968e0, type: 3}
+--- !u!114 &1130433960 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5784605256923035649, guid: 8c836a3c5cfd97048b934c4b6e8968e0, type: 3}
+  m_PrefabInstance: {fileID: 1130433959}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &1279898966 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7086589290627845818, guid: 8c836a3c5cfd97048b934c4b6e8968e0, type: 3}
