@@ -193,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 12800000, guid: e983048448caa1042a3a43e124a183d0, type: 3}
     - target: {fileID: 6657240669364460629, guid: 47c9c3879b125d947a2691fc1c66b3dc, type: 3}
       propertyPath: m_Text
-      value: Bonus
+      value: Settings
       objectReference: {fileID: 0}
     - target: {fileID: 6657240669364460629, guid: 47c9c3879b125d947a2691fc1c66b3dc, type: 3}
       propertyPath: m_Color.rgba

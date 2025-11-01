@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   canMove: 0
-  moveSpeed: 10
+  moveSpeed: 5
   maxVelocity: 50
   reelSpeedMult: 0.1
   maxGrappleDistance: 20
