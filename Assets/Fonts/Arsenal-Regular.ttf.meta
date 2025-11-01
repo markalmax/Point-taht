@@ -3,16 +3,19 @@ guid: e983048448caa1042a3a43e124a183d0
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 16
-  forceTextureCase: -2
+  fontSize: 200
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
   - Arsenal
-  fallbackFontReferences: []
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2924af06385342b42afd65125893db41, type: 3}
+  - {fileID: 12800000, guid: ca5153dd3cfc11c40a25e67bba685da2, type: 3}
+  - {fileID: 12800000, guid: e3a0abb434a603b43810048e00ebe443, type: 3}
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1

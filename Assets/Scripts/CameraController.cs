@@ -16,6 +16,11 @@ public class CameraController : MonoBehaviour
     private Camera cam;
     private float shakeTime;
 
+    void Awake()
+    {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = -1;
+    }
     void Start()
     {
         cam = GetComponent<Camera>();
