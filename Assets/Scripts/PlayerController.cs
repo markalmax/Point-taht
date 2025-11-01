@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    public bool canMove = true;
+    public bool canMove = false;
     public float moveSpeed = 10f;
     public float maxVelocity = 10f;
     public float reelSpeedMult = 0.1f;
@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (gm != null)
+        {
+            if (gm.flag) canMove = true;
+        }
+        else canMove = true;
         moveInput = Input.GetAxis("Horizontal");
         mospos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0)&&canMove)

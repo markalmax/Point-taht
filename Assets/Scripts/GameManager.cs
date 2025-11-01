@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text highScoreText;
     public TMP_Text speedText;
     public TMP_Text startText;
-    private bool flag;
+    public bool flag;
     private float startTime;
     void Start()
     {

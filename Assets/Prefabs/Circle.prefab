@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8284368764504922110}
   - component: {fileID: 3183871881278659678}
   - component: {fileID: 2317392946527775943}
-  - component: {fileID: 118262644641878457}
   - component: {fileID: 4942271164491451313}
   - component: {fileID: 8617079009810483942}
   m_Layer: 0
@@ -171,41 +170,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ba007b7d133434093abe7ba7a2049f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  moveSpeed: 5
+  canMove: 0
+  moveSpeed: 10
   maxVelocity: 50
   reelSpeedMult: 0.1
   maxGrappleDistance: 20
   ball: {fileID: 6200000, guid: c885da8b0c0bb2e42a8b9b91d46c8f77, type: 2}
---- !u!114 &118262644641878457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1641137125438938720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 3590b91b4603b465dbb4216d601bff33, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!232 &4942271164491451313
 DistanceJoint2D:
   m_ObjectHideFlags: 0
