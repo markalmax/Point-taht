@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
+    public bool canMove = true;
     public float moveSpeed = 10f;
     public float maxVelocity = 10f;
     public float reelSpeedMult = 0.1f;
@@ -15,7 +16,6 @@ public class PlayerController : MonoBehaviour
     private GameManager gm;
     private Collider2D col;
     private float moveInput;
-    private bool grappleInput;
     private Vector2 mospos;
     private bool isGrappling;    
     void Start()
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
         mospos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&&canMove)
         {
             RaycastHit2D hit = Physics2D.Raycast(transform.position, mospos - (Vector2)transform.position, maxGrappleDistance, LayerMask.GetMask("Ground"));
             if (hit)
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
                 lr.SetPosition(1, hit.point);
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0)&&canMove)
         {
             dj.enabled = false;
             lr.enabled = false;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     }   
     void FixedUpdate()
     {
-        rb.AddForce(new Vector2(moveInput, 0) * moveSpeed);
+        if(canMove)rb.AddForce(new Vector2(moveInput, 0) * moveSpeed);
         if (rb.linearVelocity.magnitude > maxVelocity)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
             //if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult; (reeling)
             if (isGrounded() && moveInput != 0) dj.distance -= 1f * Time.deltaTime;
         }
-        if (!isGrappling && isGrounded())
+        if (!isGrappling && isGrounded() && canMove)
         {
             col.sharedMaterial = ball;
         }

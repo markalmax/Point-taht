@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Trophy : MonoBehaviour
 {
+    public bool rotate = false;
     public float oscillationHeight = 0.5f;
     public float oscillationSpeed = 2f;
     public float rotationSpeed = 1f;
@@ -14,7 +15,7 @@ public class Trophy : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.Rotate(0, rotationSpeed, 0);        
+        if(rotate)transform.Rotate(0, rotationSpeed, 0);        
         float newY = startPosition.y + Mathf.Sin(Time.time * oscillationSpeed) * oscillationHeight;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
