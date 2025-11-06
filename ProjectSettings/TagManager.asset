@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Win
   - Lose
+  - Play
+  - Levels
+  - Settings
+  - Quit
+  - Back
   layers:
   - Default
   - TransparentFX

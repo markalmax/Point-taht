@@ -88,10 +88,18 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Lose"))lose();
         if (collision.gameObject.CompareTag("Win"))win();
     }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Play")) ;
+        if (collision.gameObject.CompareTag("Levels")) ;
+        if (collision.gameObject.CompareTag("Settings")) ;
+        if (collision.gameObject.CompareTag("Back")) ;  
+        if (collision.gameObject.CompareTag("Quit")) ; 
+        
+    }
     public void win()
     {
         PlayerPrefs.SetFloat("HighScore", math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));
-        Debug.Log(gm.timer);
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
     }
     public void lose()
