@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private LineRenderer lr;
     private DistanceJoint2D dj;
     private GameManager gm;
+    private MenuController mc;
     private Collider2D col;
     private float moveInput;
     private Vector2 mospos;

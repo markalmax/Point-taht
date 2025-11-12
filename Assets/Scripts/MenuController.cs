@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
     [SerializeField]
     public GameObject main;
     public GameObject levels;  
-    public GameObject info;
+    public GameObject settings;
     public void StartGame()
     {
         Debug.Log("Start Game");
@@ -13,26 +13,22 @@ public class MainMenu : MonoBehaviour
     }
     public void levelsMenu()
     {
-        Debug.Log("Levels Menu");
         main.SetActive(false);
         levels.SetActive(true);
     }
-    public void InfoMenu()
+    public void SettingsMenu()
     {
-        Debug.Log("Info Menu");
         main.SetActive(false);
-        info.SetActive(true);
+        settings.SetActive(true);
     }
     public void BackMenu()
     {
-        Debug.Log("Back to Main Menu");
         main.SetActive(true);
         levels.SetActive(false);
-        info.SetActive(false);
+        settings.SetActive(false);
     }
     public void QuitGame()
     {
-        Debug.Log("Quit Game");
         Application.Quit();
     }
 }
