@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour
     public TMP_Text highScoreText;
     public TMP_Text speedText;
     public TMP_Text startText;
-    public TMP_Text FPS;
     public bool flag;
     private float startTime;
     void Start()
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
-        FPS.text = (1f / Time.unscaledDeltaTime).ToString("F1") + " FPS";
     }
     void FixedUpdate()
     {

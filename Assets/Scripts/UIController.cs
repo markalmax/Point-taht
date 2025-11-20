@@ -8,14 +8,17 @@ public class UIController : MonoBehaviour
     public GameObject main;
     public GameObject levels;  
     public GameObject settings;
-    
+    void Awake()
+    {
+    }
+
     void Start()
     {
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Player");
         volume=FindFirstObjectByType<PostProcessVolume>();      
     }
     public void StartGame()
     {
-        Debug.Log("Start Game");
         UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
     public void LevelsMenu()

@@ -23,14 +23,13 @@ public class Trophy : MonoBehaviour
         float newY = startPosition.y + Mathf.Sin(Time.time * oscillationSpeed) * oscillationHeight;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
     }
-        public void Win()
+    public void Win()
     {
         PlayerPrefs.SetFloat("HighScore", math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));
         int current = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
         int next = current + 1;
-        if (next > UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings - 1) next = 0;
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(next, UnityEngine.SceneManagement.LoadSceneMode.Additive);
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(current);
+        if (next > UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings - 1) next = 1;        
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(next);
     }
     public void Lose()
     {
