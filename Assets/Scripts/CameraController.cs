@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
@@ -10,6 +11,7 @@ public class CameraController : MonoBehaviour
     public float shakeFrequency = 25f;
     public float shakeDampingSpeed = 3f;
     private float currentShakeIntensity = 0f;
+    public bool following = false;
     public Vector2 offset;
     private Vector3 originalPosition;
     private Rigidbody2D rb;
@@ -23,16 +25,24 @@ public class CameraController : MonoBehaviour
     }
     void Start()
     {
+        
+        player = GameObject.FindWithTag("Player");  
         cam = GetComponent<Camera>();
         if (player != null)
         {
             rb = player.GetComponent<Rigidbody2D>();
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+       
     }
-
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        if(SceneManager.GetActiveScene().buildIndex != 1) following = true;
+        else {following = false;transform.position = new Vector3(0, 0, -10);}
+    }
     void FixedUpdate()
     {
-        if (player == null) return;
+        if (!following) return;
         float cameraSizeSmoothness = cam.orthographicSize;
         cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, cameraSize, cameraSizeSmoothness * Time.fixedDeltaTime);
 

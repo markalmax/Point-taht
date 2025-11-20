@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Mathematics;
 
 public class Trophy : MonoBehaviour
 {
@@ -7,9 +8,12 @@ public class Trophy : MonoBehaviour
     public float oscillationSpeed = 2f;
     public float rotationSpeed = 1f;
     private Vector3 startPosition;
+    private GameManager gm;
+    
     
     void Start()
     {
+        gm = FindFirstObjectByType<GameManager>();
         startPosition = transform.position;
     }
 
@@ -18,5 +22,18 @@ public class Trophy : MonoBehaviour
         if(rotate)transform.Rotate(0, rotationSpeed, 0);        
         float newY = startPosition.y + Mathf.Sin(Time.time * oscillationSpeed) * oscillationHeight;
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+    }
+        public void Win()
+    {
+        PlayerPrefs.SetFloat("HighScore", math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));
+        int current = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
+        int next = current + 1;
+        if (next > UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings - 1) next = 0;
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(next, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(current);
+    }
+    public void Lose()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 }

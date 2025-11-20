@@ -108,12 +108,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraController
   player: {fileID: 0}
-  cameraSize: 5
+  cameraSize: 10
   smoothness: 0.1
   shakeIntensityMultiplier: 0.1
   maxShakeIntensity: 0.5
   shakeFrequency: 25
   shakeDampingSpeed: 3
+  following: 0
   offset: {x: 0, y: 0}
 --- !u!114 &7076018631822591250
 MonoBehaviour:

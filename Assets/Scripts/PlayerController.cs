@@ -1,6 +1,5 @@
-using Unity.Mathematics;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
@@ -14,18 +13,30 @@ public class PlayerController : MonoBehaviour
     private LineRenderer lr;
     private DistanceJoint2D dj;
     private GameManager gm;
-    private MenuController mc;
     private Collider2D col;
+    private Trophy trophy;
     private float moveInput;
     private Vector2 mospos;
-    private bool isGrappling;    
+    private bool isGrappling;
+    void Awake()
+    {
+    UnityEngine.SceneManagement.SceneManager.LoadScene(1, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+    }
     void Start()
     {
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(Camera.main.gameObject);
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         lr = GetComponent<LineRenderer>();
         dj = GetComponent<DistanceJoint2D>();
         gm = FindFirstObjectByType<GameManager>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }      
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        gm = FindFirstObjectByType<GameManager>();
+        trophy = FindFirstObjectByType<Trophy>();
     }
     void Update()
     {
@@ -86,25 +97,8 @@ public class PlayerController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Lose"))lose();
-        if (collision.gameObject.CompareTag("Win"))win();
+        if (collision.gameObject.CompareTag("Lose"))trophy.Lose();
+        if (collision.gameObject.CompareTag("Win"))trophy.Win();
     }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Play")) ;
-        if (collision.gameObject.CompareTag("Levels")) ;
-        if (collision.gameObject.CompareTag("Settings")) ;
-        if (collision.gameObject.CompareTag("Back")) ;  
-        if (collision.gameObject.CompareTag("Quit")) ; 
-        
-    }
-    public void win()
-    {
-        PlayerPrefs.SetFloat("HighScore", math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
-    }
-    public void lose()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
-    }
+
 }
