@@ -9,12 +9,15 @@ public class Trophy : MonoBehaviour
     public float rotationSpeed = 1f;
     private Vector3 startPosition;
     private GameManager gm;
-    
+    private PlayerController pc;
+    private GameObject player;
     
     void Start()
     {
         gm = FindFirstObjectByType<GameManager>();
         startPosition = transform.position;
+        player = GameObject.FindWithTag("Player");
+        pc = player.GetComponent<PlayerController>();
     }
 
     void FixedUpdate()
@@ -30,9 +33,10 @@ public class Trophy : MonoBehaviour
         int next = current + 1;
         if (next > UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings - 1) next = 1;        
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(next);
-    }
+        pc.Release();         
+        }
     public void Lose()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        player.transform.position = Vector3.zero;   
     }
 }

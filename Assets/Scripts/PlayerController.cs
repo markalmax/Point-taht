@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
             Release();
         }
     }
-    void Release()
+    public void Release()
     {
         dj.enabled = false;
         lr.enabled = false;
