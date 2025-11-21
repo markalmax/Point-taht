@@ -30,7 +30,6 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<Collider2D>();
         lr = GetComponent<LineRenderer>();
         dj = GetComponent<DistanceJoint2D>();
-        gm = FindFirstObjectByType<GameManager>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }      
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
@@ -42,9 +41,9 @@ public class PlayerController : MonoBehaviour
     {
         if (gm != null)
         {
-            if (gm.flag) canMove = true;
+            canMove = gm.flag;
         }
-        else canMove = true;
+        else {canMove = false;Release();}
         moveInput = Input.GetAxis("Horizontal");
         mospos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0)&&canMove)
@@ -64,11 +63,15 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0)&&canMove)
         {
-            dj.enabled = false;
-            lr.enabled = false;
-            lr.positionCount = 0;
-            isGrappling = false;
+            Release();
         }
+    }
+    void Release()
+    {
+        dj.enabled = false;
+        lr.enabled = false;
+        lr.positionCount = 0;
+        isGrappling = false;
     }   
     void FixedUpdate()
     {

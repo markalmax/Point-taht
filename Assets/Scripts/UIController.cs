@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
@@ -8,13 +9,9 @@ public class UIController : MonoBehaviour
     public GameObject main;
     public GameObject levels;  
     public GameObject settings;
-    void Awake()
-    {
-    }
-
+    public TMP_Text Level1,Level2,Level3,Level4;    
     void Start()
     {
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync("Player");
         volume=FindFirstObjectByType<PostProcessVolume>();      
     }
     public void StartGame()
