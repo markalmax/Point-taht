@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public float timer = 0f;
     public float startWait = 3f;
+    public GameObject canvas;
+    public GameObject player;
     public Rigidbody2D rb;
     public TMP_Text timerText;
     public TMP_Text highScoreText;
@@ -14,8 +16,14 @@ public class GameManager : MonoBehaviour
     private float startTime;
     void Start()
     {
+        player=GameObject.FindWithTag("Player");
+        canvas=GameObject.Find("Canvas");
+        timerText = canvas.transform.Find("TimerText").GetComponent<TMP_Text>();
+        highScoreText = canvas.transform.Find("HighScoreText").GetComponent<TMP_Text>();
+        speedText = canvas.transform.Find("SpeedText").GetComponent<TMP_Text>();
+        startText = canvas.transform.Find("StartText").GetComponent<TMP_Text>();
         startTime = startWait;
-        rb=FindFirstObjectByType<Rigidbody2D>();
+        rb=player.GetComponent<Rigidbody2D>();
         if (PlayerPrefs.HasKey("HighScore"))
         {
             float highScore = PlayerPrefs.GetFloat("HighScore");

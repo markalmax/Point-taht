@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
     public float shakeFrequency = 25f;
     public float shakeDampingSpeed = 3f;
     private float currentShakeIntensity = 0f;
-    public bool following = false;
+    public bool following = true;
     public Vector2 offset;
     private Vector3 originalPosition;
     private Rigidbody2D rb;
@@ -25,15 +25,12 @@ public class CameraController : MonoBehaviour
     }
     void Start()
     {
-        
         player = GameObject.FindWithTag("Player");  
         cam = GetComponent<Camera>();
         if (player != null)
         {
             rb = player.GetComponent<Rigidbody2D>();
-        }
-        SceneManager.sceneLoaded += OnSceneLoaded;
-       
+        }       
     }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {

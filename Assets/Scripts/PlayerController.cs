@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrappling;
     void Awake()
     {
+    if(SceneManager.loadedSceneCount == 0)
     UnityEngine.SceneManagement.SceneManager.LoadScene(1, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
     void Start()
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
         lr = GetComponent<LineRenderer>();
         dj = GetComponent<DistanceJoint2D>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        gm = FindFirstObjectByType<GameManager>();
+        trophy = FindFirstObjectByType<Trophy>();
     }      
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
