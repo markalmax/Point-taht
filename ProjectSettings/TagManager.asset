@@ -11,6 +11,7 @@ TagManager:
   - Settings
   - Quit
   - Back
+  - Spawn
   layers:
   - Default
   - TransparentFX
