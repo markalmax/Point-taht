@@ -2,7 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 public class DontDestroy : MonoBehaviour
 {
-// Tracks all unique objects by name
     private static Dictionary<string, GameObject> instances = new Dictionary<string, GameObject>();
 
     private void Awake()

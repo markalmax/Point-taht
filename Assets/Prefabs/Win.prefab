@@ -244,9 +244,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef7b12ac40b9e5e4c8fae18468a0cf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  rotate: 1
   oscillationHeight: 0.5
   oscillationSpeed: 2
   rotationSpeed: 1
+  gm: {fileID: 0}
+  spawn: {fileID: 0}
+  pc: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1 &5341996706215687457
 GameObject:
   m_ObjectHideFlags: 0

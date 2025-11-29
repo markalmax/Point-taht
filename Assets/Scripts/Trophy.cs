@@ -15,6 +15,7 @@ public class Trophy : MonoBehaviour
     
     void Start()
     {
+        startPosition = transform.position;
         spawn = GameObject.FindWithTag("Spawn");
         gm = FindFirstObjectByType<GameManager>();
         player = GameObject.FindWithTag("Player");
