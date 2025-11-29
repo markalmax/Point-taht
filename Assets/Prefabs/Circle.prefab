@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2317392946527775943}
   - component: {fileID: 4942271164491451313}
   - component: {fileID: 8617079009810483942}
+  - component: {fileID: 7352370975584912340}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Player
@@ -306,3 +307,15 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &7352370975584912340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641137125438938720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 947ff2cb305daae42b9c21b60340e9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PersistentObject

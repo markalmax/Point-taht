@@ -31,10 +31,11 @@ public class CameraController : MonoBehaviour
         {
             rb = player.GetComponent<Rigidbody2D>();
         }       
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
-        if(SceneManager.GetActiveScene().buildIndex != 1) following = true;
+        if(SceneManager.GetActiveScene().buildIndex != 0) following = true;
         else {following = false;transform.position = new Vector3(0, 0, -10);player.transform.position = new Vector3(0, 10, 0);}
     }
     void FixedUpdate()

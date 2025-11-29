@@ -18,22 +18,15 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
     private Vector2 mospos;
     private bool isGrappling;
-    void Awake()
-    {
-    if(SceneManager.loadedSceneCount == 0)
-    UnityEngine.SceneManagement.SceneManager.LoadScene(1, UnityEngine.SceneManagement.LoadSceneMode.Additive);
-    }
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(Camera.main.gameObject);
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         lr = GetComponent<LineRenderer>();
         dj = GetComponent<DistanceJoint2D>();
-        SceneManager.sceneLoaded += OnSceneLoaded;
         gm = FindFirstObjectByType<GameManager>();
         trophy = FindFirstObjectByType<Trophy>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }      
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
@@ -106,5 +99,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Lose"))trophy.Lose();
         if (collision.gameObject.CompareTag("Win"))trophy.Win();
     }
-
+    public void SpawnTP(Vector3 position)
+    {
+        transform.position = position;
+    }
 }

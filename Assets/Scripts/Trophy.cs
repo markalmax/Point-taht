@@ -8,14 +8,15 @@ public class Trophy : MonoBehaviour
     public float oscillationSpeed = 2f;
     public float rotationSpeed = 1f;
     private Vector3 startPosition;
-    private GameManager gm;
-    private PlayerController pc;
-    private GameObject player;
+    public GameManager gm;
+    public GameObject spawn;
+    public PlayerController pc;
+    public GameObject player;
     
     void Start()
     {
+        spawn = GameObject.FindWithTag("Spawn");
         gm = FindFirstObjectByType<GameManager>();
-        startPosition = transform.position;
         player = GameObject.FindWithTag("Player");
         pc = player.GetComponent<PlayerController>();
     }
@@ -28,15 +29,19 @@ public class Trophy : MonoBehaviour
     }
     public void Win()
     {
-        PlayerPrefs.SetFloat("HighScore", math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));
-        int current = UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex;
-        int next = current + 1;
-        if (next > UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings - 1) next = 1;        
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(next);
+        PlayerPrefs.SetFloat("HighScore", math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));   
+        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1 == 5)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
+            pc.Release(); 
+            return;
+        }
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         pc.Release();         
         }
     public void Lose()
     {
-        player.transform.position = Vector3.zero;   
+        player.transform.position = spawn.transform.position;
+        pc.Release();   
     }
 }

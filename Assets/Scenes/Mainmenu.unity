@@ -268,18 +268,6 @@ PrefabInstance:
       value: Circle
       objectReference: {fileID: 0}
     - target: {fileID: 6532084976449891810, guid: 1bbc54181f464eb4b86c2b09d8ab6639, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6532084976449891810, guid: 1bbc54181f464eb4b86c2b09d8ab6639, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6532084976449891810, guid: 1bbc54181f464eb4b86c2b09d8ab6639, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6532084976449891810, guid: 1bbc54181f464eb4b86c2b09d8ab6639, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -593,6 +581,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 303020999}
   m_CullTransparentMesh: 1
+--- !u!1 &363192568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7160836570608646778, guid: 68831a17f5654074fbbc882cdf82e60b, type: 3}
+  m_PrefabInstance: {fileID: 923476047}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &384374345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1372,11 @@ MonoBehaviour:
   Level2: {fileID: 0}
   Level3: {fileID: 0}
   Level4: {fileID: 0}
+  spawnPoints:
+  - {fileID: 780492465}
+  - {fileID: 1937865700}
+  - {fileID: 1568311416}
+  - {fileID: 363192568}
 --- !u!1 &615621693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1917,6 +1915,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700286863}
   m_CullTransparentMesh: 1
+--- !u!1 &780492465 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7160836570608646778, guid: 68831a17f5654074fbbc882cdf82e60b, type: 3}
+  m_PrefabInstance: {fileID: 1535105746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &800714970
 GameObject:
   m_ObjectHideFlags: 0
@@ -3467,6 +3470,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68831a17f5654074fbbc882cdf82e60b, type: 3}
+--- !u!1 &1568311416 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7160836570608646778, guid: 68831a17f5654074fbbc882cdf82e60b, type: 3}
+  m_PrefabInstance: {fileID: 1307610058}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1689708858
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4104,6 +4112,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -700, y: -350}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1937865700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7160836570608646778, guid: 68831a17f5654074fbbc882cdf82e60b, type: 3}
+  m_PrefabInstance: {fileID: 1869222055}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2083261517
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,14 +9,17 @@ public class UIController : MonoBehaviour
     public GameObject main;
     public GameObject levels;  
     public GameObject settings;
-    public TMP_Text Level1,Level2,Level3,Level4;    
+    public PlayerController pc;
+    public TMP_Text Level1,Level2,Level3,Level4;
+    public GameObject[] spawnPoints;    
     void Start()
     {
+        pc = FindFirstObjectByType<PlayerController>();
         volume=FindFirstObjectByType<PostProcessVolume>();      
     }
     public void StartGame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
     }
     public void LevelsMenu()
     {
@@ -39,20 +42,24 @@ public class UIController : MonoBehaviour
         Application.Quit();
     }
     public void L1()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+    {   
+        pc.SpawnTP(spawnPoints[0].transform.position);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
     }
     public void L2()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(3);
+        pc.SpawnTP(spawnPoints[1].transform.position);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(2);
     }
     public void L3()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(4);
+        pc.SpawnTP(spawnPoints[2].transform.position);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(3); 
     }
     public void L4()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(5);
+        pc.SpawnTP(spawnPoints[3].transform.position);
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(4);
     }
     public void Fast()
     {
