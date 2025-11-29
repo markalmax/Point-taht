@@ -1,6 +1,8 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -10,12 +12,25 @@ public class UIController : MonoBehaviour
     public GameObject levels;  
     public GameObject settings;
     public PlayerController pc;
-    public TMP_Text Level1,Level2,Level3,Level4;
+    public TMP_Text[] levelTimes;
     public GameObject[] spawnPoints;    
     void Start()
     {
         pc = FindFirstObjectByType<PlayerController>();
-        volume=FindFirstObjectByType<PostProcessVolume>();      
+        volume=FindFirstObjectByType<PostProcessVolume>();    
+        for(int i=0;i<levelTimes.Length;i++)
+        {
+            if (PlayerPrefs.HasKey("HighScore"+(i+1)))
+            {
+                float levelTime = PlayerPrefs.GetFloat("HighScore"+(i+1));
+                TimeSpan time = TimeSpan.FromSeconds(levelTime);
+                levelTimes[i].text = time.ToString(@"mm\:ss\:fff");
+            }
+            else
+            {
+                levelTimes[i].text = "--:--:---";
+            }
+        }
     }
     public void StartGame()
     {
@@ -65,10 +80,18 @@ public class UIController : MonoBehaviour
     {
         volume.profile.GetSetting<Bloom>().fastMode.value = true;
         volume.profile.GetSetting<ChromaticAberration>().fastMode.value = true;
+        QualitySettings.SetQualityLevel(0);
     }
     public void Qual()
     {
         volume.profile.GetSetting<Bloom>().fastMode.value = false;
         volume.profile.GetSetting<ChromaticAberration>().fastMode.value = false;
+        QualitySettings.SetQualityLevel(6);
     }
+    public void DeleteData()
+    {
+        PlayerPrefs.DeleteAll();
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
+    }
+    
 }

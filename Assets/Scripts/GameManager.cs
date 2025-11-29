@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public float timer = 0f;
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
         rb=player.GetComponent<Rigidbody2D>();
         if (PlayerPrefs.HasKey("HighScore"))
         {
-            float highScore = PlayerPrefs.GetFloat("HighScore");
+            float highScore = PlayerPrefs.GetFloat("HighScore"+SceneManager.GetActiveScene().buildIndex);
             Debug.Log(highScore);
             TimeSpan time = TimeSpan.FromSeconds(highScore);
             highScoreText.text = time.ToString(@"mm\:ss\:fff");

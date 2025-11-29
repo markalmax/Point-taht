@@ -17,12 +17,6 @@ public class CameraController : MonoBehaviour
     private Rigidbody2D rb;
     private Camera cam;
     private float shakeTime;
-
-    void Awake()
-    {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = -1;
-    }
     void Start()
     {
         player = GameObject.FindWithTag("Player");  
