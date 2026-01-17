@@ -31,6 +31,7 @@ public class Trophy : MonoBehaviour
     public void Win()
     {
         PlayerPrefs.SetFloat("HighScore"+UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));   
+        PlayerPrefs.SetInt("DisableTimer", 1);
         if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1 == 5)
         {
             UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
