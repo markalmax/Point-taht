@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private LineRenderer lr;
     private DistanceJoint2D dj;
     private GameManager gm;
+    private effects ef;
     private Collider2D col;
     private Trophy trophy;
     private float moveInput;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrappling;
     void Start()
     {
+        ef = GetComponent<effects>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
         lr = GetComponent<LineRenderer>();
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
                 isGrappling = true;
                 dj.enabled = true;
                 dj.connectedAnchor = hit.point;
+                //ef.grappleSound();
                 dj.distance = Vector2.Distance(transform.position, hit.point);
                 lr.enabled = true;
                 lr.positionCount = 2;

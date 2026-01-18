@@ -6,6 +6,8 @@ public class effects : MonoBehaviour
     public PlayerController pc;
     public ParticleSystem ps;
     public AudioSource jump;
+    public AudioClip grap;
+    public AudioClip land;
     private Vector2 contactSquash;
     private Vector2 lastFrameVelocity;
     void Start()
@@ -42,6 +44,13 @@ public class effects : MonoBehaviour
             contactSquash = new Vector2(squashX, stretchY);
         }
         ps.Play();
+        jump.clip = land;
+        jump.pitch = Random.Range(0.8f, 1.2f);
+        jump.Play();
+    }
+    public void grappleSound()
+    {
+        jump.clip = grap;
         jump.pitch = Random.Range(0.8f, 1.2f);
         jump.Play();
     }
