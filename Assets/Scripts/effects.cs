@@ -1,14 +1,16 @@
 using UnityEngine;
 
-public class SquashAndStretch : MonoBehaviour
+public class effects : MonoBehaviour
 {
     public Rigidbody2D rb;
     public PlayerController pc;
     public ParticleSystem ps;
+    public AudioSource jump;
     private Vector2 contactSquash;
     private Vector2 lastFrameVelocity;
     void Start()
     {
+        jump = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
         pc = GetComponent<PlayerController>();
         ps = GetComponent<ParticleSystem>();
@@ -40,5 +42,7 @@ public class SquashAndStretch : MonoBehaviour
             contactSquash = new Vector2(squashX, stretchY);
         }
         ps.Play();
+        jump.pitch = Random.Range(0.8f, 1.2f);
+        jump.Play();
     }
 }
