@@ -4,12 +4,14 @@ public class SquashAndStretch : MonoBehaviour
 {
     public Rigidbody2D rb;
     public PlayerController pc;
+    public ParticleSystem ps;
     private Vector2 contactSquash;
     private Vector2 lastFrameVelocity;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         pc = GetComponent<PlayerController>();
+        ps = GetComponent<ParticleSystem>();
     }
     void FixedUpdate()
     {
@@ -28,7 +30,7 @@ public class SquashAndStretch : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("CV: " + lastFrameVelocity+" LV: " + rb.linearVelocity);
+        //Debug.Log("CV: " + lastFrameVelocity+" LV: " + rb.linearVelocity);
         if(rb.linearVelocityX == 0 || rb.linearVelocityY == 0)
         {
             float collisionStrengthX = Mathf.Clamp01(Mathf.Abs(lastFrameVelocity.x) / pc.maxVelocity);
@@ -37,5 +39,6 @@ public class SquashAndStretch : MonoBehaviour
             float stretchY = 1f + (collisionStrengthX * 0.5f);
             contactSquash = new Vector2(squashX, stretchY);
         }
+        ps.Play();
     }
 }
