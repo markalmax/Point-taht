@@ -115,7 +115,7 @@ MonoBehaviour:
   maxShakeIntensity: 0.5
   shakeFrequency: 25
   shakeDampingSpeed: 3
-  following: 0
+  following: 1
   offset: {x: 0, y: 0}
 --- !u!114 &7076018631822591250
 MonoBehaviour:
