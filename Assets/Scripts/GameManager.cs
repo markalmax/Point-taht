@@ -9,12 +9,12 @@ public class GameManager : MonoBehaviour
     public GameObject canvas;
     public GameObject player;
     public Rigidbody2D rb;
+    public PlayerController pc;
     public TMP_Text timerText;
     public TMP_Text highScoreText;
     public TMP_Text speedText;
     public TMP_Text startText;
-    public bool flag;
-    public bool startTimer = true;
+   public bool startTimer = true;
     private float startTime;
     void Start()
     {
@@ -31,13 +31,14 @@ public class GameManager : MonoBehaviour
         startText = canvas.transform.Find("StartText").GetComponent<TMP_Text>();
         startTime = startWait; 
         rb=player.GetComponent<Rigidbody2D>();
-        if (PlayerPrefs.HasKey("HighScore"))
+        pc=player.GetComponent<PlayerController>();
+        if (PlayerPrefs.HasKey("HighScore"+SceneManager.GetActiveScene().buildIndex))
         {
             float highScore = PlayerPrefs.GetFloat("HighScore"+SceneManager.GetActiveScene().buildIndex);
-            Debug.Log(highScore);
+            //Debug.Log(highScore);
             TimeSpan time = TimeSpan.FromSeconds(highScore);
             highScoreText.text = time.ToString(@"mm\:ss\:fff");
-            Debug.Log(time.ToString(@"mm\:ss\:fff"));
+            //Debug.Log(time.ToString(@"mm\:ss\:fff"));
         }
         else
         {
@@ -51,11 +52,12 @@ public class GameManager : MonoBehaviour
     {
         if(!startTimer)
         {
+            startText.gameObject.SetActive(false);
             startTime = 0f;
         }
           if (startTime <= 0f)
         {
-            flag = true;
+            pc.canMove = true;
             startText.text = "Go!";
         }
         else
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
             if (timeDisplay == "0")timeDisplay = "Go!";
             startText.text = timeDisplay;
         }  
-        if(flag)timer += Time.deltaTime;
+        if(pc.canMove)timer += Time.deltaTime;
         speedText.text = rb.linearVelocity.magnitude.ToString("F1") + " Unit/Sec";
         TimeSpan time = TimeSpan.FromSeconds(timer);
         if (time.TotalSeconds >= 1)

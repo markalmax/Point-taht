@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public bool canMove = false;
     public float moveSpeed = 10f;
+    public float moveMult = 1.5f;
+    public float moveVelocity;
     public float maxVelocity = 10f;
     public float reelSpeedMult = 0.1f;
     public float maxGrappleDistance = 20f;
@@ -29,19 +31,17 @@ public class PlayerController : MonoBehaviour
         gm = FindFirstObjectByType<GameManager>();
         trophy = FindFirstObjectByType<Trophy>();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        moveVelocity = moveSpeed;
     }      
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
         gm = FindFirstObjectByType<GameManager>();
         trophy = FindFirstObjectByType<Trophy>();
+        //if(gm==null){canMove=false;Release();}
     }
     void Update()
     {
-        if (gm != null)
-        {
-            canMove = gm.flag;
-        }
-        else {canMove = false;Release();}
+        
         moveInput = Input.GetAxis("Horizontal");
         mospos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (Input.GetMouseButtonDown(0)&&canMove)
@@ -64,6 +64,7 @@ public class PlayerController : MonoBehaviour
         {
             Release();
         }
+       
     }
     public void Release()
     {
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
     }   
     void FixedUpdate()
     {
-        if(canMove)rb.AddForce(new Vector2(moveInput, 0) * moveSpeed);
+        if(canMove)rb.AddForce(new Vector2(moveInput, 0) * moveVelocity);
         if (rb.linearVelocity.magnitude > maxVelocity)
         {
             rb.linearVelocity = rb.linearVelocity.normalized * maxVelocity;
@@ -83,14 +84,19 @@ public class PlayerController : MonoBehaviour
         if (isGrappling)
         {
             lr.SetPosition(0, transform.position);
-            //if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult; (reeling)
+            //if(!isGrounded())dj.distance -= moveInput.y * reelSpeedMult;
             if (isGrounded() && moveInput != 0) dj.distance -= 1f * Time.deltaTime;
         }
         if (!isGrappling && isGrounded() && canMove)
         {
             col.sharedMaterial = ball;
+            moveVelocity = moveSpeed*moveMult;
         }
-        else col.sharedMaterial = null;
+        else
+        {
+            col.sharedMaterial = null;
+            moveVelocity = moveSpeed;
+        } 
     }
     public bool isGrounded()
     {

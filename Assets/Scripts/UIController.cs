@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
     [SerializeField]
     public PostProcessVolume volume;
     public GameObject main;
+    public GameObject mainHB;
     public GameObject levels;  
     public GameObject settings;
     public PlayerController pc;
@@ -18,6 +19,14 @@ public class UIController : MonoBehaviour
     {
         pc = FindFirstObjectByType<PlayerController>();
         volume=FindFirstObjectByType<PostProcessVolume>();    
+        if(PlayerPrefs.GetInt("Mode",0)==1)
+        {
+            Qual();
+        }
+        else
+        {
+            Fast();
+        }
         for(int i=0;i<levelTimes.Length;i++)
         {
             if (PlayerPrefs.HasKey("HighScore"+(i+1)))
@@ -39,16 +48,19 @@ public class UIController : MonoBehaviour
     public void LevelsMenu()
     {
         main.SetActive(false);
+        mainHB.SetActive(false);
         levels.SetActive(true);
     }
     public void SettingsMenu()
     {
         main.SetActive(false);
+        mainHB.SetActive(false);
         settings.SetActive(true);
     }
     public void BackMenu()
     {
         main.SetActive(true);
+        mainHB.SetActive(true);
         levels.SetActive(false);
         settings.SetActive(false);
     }
@@ -81,12 +93,14 @@ public class UIController : MonoBehaviour
         volume.profile.GetSetting<Bloom>().fastMode.value = true;
         volume.profile.GetSetting<ChromaticAberration>().fastMode.value = true;
         QualitySettings.SetQualityLevel(0);
+        PlayerPrefs.SetInt("Mode", 0);
     }
     public void Qual()
     {
         volume.profile.GetSetting<Bloom>().fastMode.value = false;
         volume.profile.GetSetting<ChromaticAberration>().fastMode.value = false;
         QualitySettings.SetQualityLevel(6);
+        PlayerPrefs.SetInt("Mode", 1);
     }
     public void DeleteData()
     {
