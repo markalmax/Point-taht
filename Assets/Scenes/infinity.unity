@@ -369,6 +369,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8650617766663390581, guid: a209f944af38deb4da43798856fe19ec, type: 3}
+      propertyPath: ShapeModule.type
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650617766663390581, guid: a209f944af38deb4da43798856fe19ec, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 0.1352356
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650617766663390581, guid: a209f944af38deb4da43798856fe19ec, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650617766663390581, guid: a209f944af38deb4da43798856fe19ec, type: 3}
+      propertyPath: ShapeModule.m_Position.y
+      value: 0.55630654
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650617766663390581, guid: a209f944af38deb4da43798856fe19ec, type: 3}
+      propertyPath: ShapeModule.m_Position.z
+      value: -0.11857189
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650617766663390581, guid: a209f944af38deb4da43798856fe19ec, type: 3}
+      propertyPath: ShapeModule.m_Rotation.x
+      value: 359.6947
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650617766663390581, guid: a209f944af38deb4da43798856fe19ec, type: 3}
+      propertyPath: ShapeModule.placementMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8650617766663390581, guid: a209f944af38deb4da43798856fe19ec, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

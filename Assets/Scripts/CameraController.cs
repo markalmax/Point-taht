@@ -35,28 +35,22 @@ public class CameraController : MonoBehaviour
     void FixedUpdate()
     {
         if (!following) return;
-        float cameraSizeSmoothness = cam.orthographicSize;
-        cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, cameraSize, cameraSizeSmoothness * Time.fixedDeltaTime);
+        // float cameraSizeSmoothness = cam.orthographicSize;
+        // cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, cameraSize, cameraSizeSmoothness * Time.fixedDeltaTime);
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 playerPos = new Vector2(player.transform.position.x, player.transform.position.y);
-        Vector2 smoothedPos = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), playerPos + offset, smoothness);
+        Vector2 betweenPos = (mousePos + playerPos) / 2;
+        Vector2 smoothedPos = Vector2.Lerp(new Vector2(transform.position.x, transform.position.y), betweenPos + offset, smoothness);
         originalPosition = new Vector3(smoothedPos.x, smoothedPos.y, transform.position.z);
 
-        float speedPercent = rb.linearVelocity.magnitude / rb.GetComponent<PlayerController>().maxVelocity;
+        float speedPercent = rb.linearVelocity.magnitude / player.GetComponent<PlayerController>().maxVelocity;
         float targetShakeIntensity = speedPercent * shakeIntensityMultiplier;
         targetShakeIntensity = Mathf.Min(targetShakeIntensity, maxShakeIntensity);
         currentShakeIntensity = Mathf.Lerp(currentShakeIntensity, targetShakeIntensity, Time.fixedDeltaTime * shakeDampingSpeed);
+        shakeTime += Time.fixedDeltaTime * shakeFrequency;
+        Vector3 shakeOffset = new Vector3(Mathf.PerlinNoise(shakeTime,0),Mathf.PerlinNoise(0,shakeTime),0) * currentShakeIntensity;
+        transform.position = originalPosition + shakeOffset;
 
-        if (currentShakeIntensity > 0)
-        {
-            shakeTime += Time.fixedDeltaTime * shakeFrequency;
-            Vector3 shakeOffset = new Vector3(Mathf.PerlinNoise(shakeTime,0)*2-1,Mathf.PerlinNoise(0,shakeTime)*2-1,0) * currentShakeIntensity;
-            transform.position = originalPosition + shakeOffset;
-        }
-        else
-        {
-            transform.position = originalPosition;
-        }
     }
 }
