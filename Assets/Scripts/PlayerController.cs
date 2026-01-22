@@ -52,12 +52,16 @@ public class PlayerController : MonoBehaviour
                 isGrappling = true;
                 dj.enabled = true;
                 dj.connectedAnchor = hit.point;
-                //ef.grappleSound();
+                ef.grappleSound();
                 dj.distance = Vector2.Distance(transform.position, hit.point);
                 lr.enabled = true;
                 lr.positionCount = 2;
                 lr.SetPosition(0, transform.position);
                 lr.SetPosition(1, hit.point);
+            }
+            if (hit.collider == null)
+            {
+                Release();
             }
         }
         if (Input.GetMouseButtonUp(0)&&canMove)
@@ -98,11 +102,8 @@ public class PlayerController : MonoBehaviour
             moveVelocity = moveSpeed;
         } 
     }
-    public bool isGrounded()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, LayerMask.GetMask("Ground"));
-        return hit.collider != null;
-    }
+    public bool isGrounded() { return Physics2D.Raycast(transform.position, Vector2.down, 1.1f, LayerMask.GetMask("Ground")).collider != null; }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Lose"))trophy.Lose();

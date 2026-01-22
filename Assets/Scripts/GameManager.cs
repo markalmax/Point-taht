@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text highScoreText;
     public TMP_Text speedText;
     public TMP_Text startText;
-   public bool startTimer = true;
+    public bool startTimer = true;
     private float startTime;
     void Start()
     {
