@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2317392946527775943}
   - component: {fileID: 7352370975584912340}
   - component: {fileID: 1532133623423066654}
+  - component: {fileID: 3669075160927108484}
   - component: {fileID: 8453309518171306848}
   - component: {fileID: 7186106558937412577}
   - component: {fileID: 6901217773044576674}
@@ -343,6 +344,24 @@ MonoBehaviour:
   jump: {fileID: 0}
   grap: {fileID: 8300000, guid: 0429d3c4f1f386549b4e7bfbe133b407, type: 3}
   land: {fileID: 8300000, guid: bd180d6cd7ac7584b865550fdb798271, type: 3}
+--- !u!114 &3669075160927108484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641137125438938720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bcadd1cc06c6e54695fba788fa6dd4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpriteControlller
+  rb: {fileID: 0}
+  sr: {fileID: 0}
+  threshold: 1
+  Smile: {fileID: -2293433327334962094, guid: fcad9ed556bfd7d46a303027033c204f, type: 3}
+  Flat: {fileID: -5740061246660830011, guid: 17e7368351950ee4ab8c865025ed34fd, type: 3}
+  Frown: {fileID: 2839335818946743430, guid: 1da6d6ed39b75234f97f28b072e475b2, type: 3}
 --- !u!198 &8453309518171306848
 ParticleSystem:
   m_ObjectHideFlags: 0

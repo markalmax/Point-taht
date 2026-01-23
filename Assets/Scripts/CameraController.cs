@@ -19,16 +19,13 @@ public class CameraController : MonoBehaviour
     private float shakeTime;
     void Start()
     {
-        player = GameObject.FindWithTag("Player");  
-        cam = GetComponent<Camera>();
-        if (player != null)
-        {
-            rb = player.GetComponent<Rigidbody2D>();
-        }       
+           
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
+        player = GameObject.FindWithTag("Player");  
+        rb = player.GetComponent<Rigidbody2D>();   
         if(SceneManager.GetActiveScene().buildIndex != 0) following = true;
         else {following = false;transform.position = new Vector3(0, 0, -10);player.transform.position = new Vector3(0, 10, 0);}
     }

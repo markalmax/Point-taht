@@ -92,6 +92,7 @@ public class UIController : MonoBehaviour
     }
     public void inf()
     {
+        pc.gameObject.transform.position = spawnPoints[4].transform.position;
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(5);
     }
     public void Fast()
