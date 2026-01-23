@@ -21,6 +21,11 @@ public class SpriteControlller : MonoBehaviour
             if (rb.linearVelocity.magnitude >= threshold)sr.sprite=Smile;
             else sr.sprite=Flat;
         }
+
+        if (rb.linearVelocity.x < 0)
+            sr.flipX = true;
+        else if (rb.linearVelocity.x > 0)
+            sr.flipX = false;
     }
     
     void OnCollisionEnter2D(Collision2D collision)
