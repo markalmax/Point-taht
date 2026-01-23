@@ -98,6 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70396c989e9d054598e016f1a30844b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Blocks
+  mult: 1
+  strength: 20
 --- !u!198 &1117209584530783176
 ParticleSystem:
   m_ObjectHideFlags: 0

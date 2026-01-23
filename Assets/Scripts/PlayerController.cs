@@ -103,14 +103,4 @@ public class PlayerController : MonoBehaviour
         } 
     }
     public bool isGrounded() { return Physics2D.Raycast(transform.position, Vector2.down, 1.1f, LayerMask.GetMask("Ground")).collider != null; }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Lose"))trophy.Lose();
-        if (collision.gameObject.CompareTag("Win"))trophy.Win();
-    }
-    public void SpawnTP(Vector3 position)
-    {
-        transform.position = position;
-    }
 }

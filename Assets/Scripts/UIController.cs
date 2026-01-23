@@ -14,6 +14,7 @@ public class UIController : MonoBehaviour
     public GameObject settings;
     public PlayerController pc;
     public TMP_Text[] levelTimes;
+    public TMP_Text distanceText;
     public GameObject[] spawnPoints;    
     void Start()
     {
@@ -40,6 +41,7 @@ public class UIController : MonoBehaviour
                 levelTimes[i].text = "--:--:---";
             }
         }
+        distanceText.text = PlayerPrefs.GetFloat("HighScoreInfinity", 0f).ToString("F1")+" m";
     }
     public void StartGame()
     {
@@ -70,23 +72,27 @@ public class UIController : MonoBehaviour
     }
     public void L1()
     {   
-        pc.SpawnTP(spawnPoints[0].transform.position);
+        pc.gameObject.transform.position = spawnPoints[0].transform.position;
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1);
     }
     public void L2()
     {
-        pc.SpawnTP(spawnPoints[1].transform.position);
+        pc.gameObject.transform.position = spawnPoints[1].transform.position;
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(2);
     }
     public void L3()
     {
-        pc.SpawnTP(spawnPoints[2].transform.position);
+        pc.gameObject.transform.position = spawnPoints[2].transform.position;
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(3); 
     }
     public void L4()
     {
-        pc.SpawnTP(spawnPoints[3].transform.position);
+        pc.gameObject.transform.position = spawnPoints[3].transform.position;
         UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(4);
+    }
+    public void inf()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(5);
     }
     public void Fast()
     {

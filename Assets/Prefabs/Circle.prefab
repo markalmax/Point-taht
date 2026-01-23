@@ -311,7 +311,7 @@ MonoBehaviour:
   moveVelocity: 0
   maxVelocity: 50
   reelSpeedMult: 0.1
-  maxGrappleDistance: 20
+  maxGrappleDistance: 40
   ball: {fileID: 6200000, guid: c885da8b0c0bb2e42a8b9b91d46c8f77, type: 2}
 --- !u!114 &7352370975584912340
 MonoBehaviour:
@@ -5226,7 +5226,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 10.174618
+  MaxDistance: 9.999997
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

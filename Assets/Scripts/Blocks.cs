@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class Blocks : MonoBehaviour
 {
-    private float mult = 1.2f;
+    public float mult = 1.1f;
+    public float strength = 20f;
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (Mathf.Abs(collision.relativeVelocity.magnitude) > 10f)
+            if (Mathf.Abs(collision.relativeVelocity.magnitude) > strength)
             {
                 Destroy(gameObject,1);
                 gameObject.GetComponent<Collider2D>().enabled = false;

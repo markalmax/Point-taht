@@ -1,5 +1,6 @@
 using UnityEngine;
 using Unity.Mathematics;
+using UnityEngine.SceneManagement;
 
 public class Trophy : MonoBehaviour
 {
@@ -30,20 +31,22 @@ public class Trophy : MonoBehaviour
     }
     public void Win()
     {
-        PlayerPrefs.SetFloat("HighScore"+UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex, math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));   
+        PlayerPrefs.SetFloat("HighScore"+SceneManager.GetActiveScene().buildIndex, math.min(gm.timer, PlayerPrefs.GetFloat("HighScore",Mathf.Infinity)));   
         PlayerPrefs.SetInt("DisableTimer", 1);
-        if(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1 == 5)
+        if(SceneManager.GetActiveScene().buildIndex + 1 == 5)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(0);
+            SceneManager.LoadSceneAsync(0);
             pc.Release(); 
             return;
         }
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+       SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
         pc.Release();         
-        }
-    public void Lose()
+    }
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        player.transform.position = spawn.transform.position;
-        pc.Release();   
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Win();
+        }
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2135315112662649487}
   - component: {fileID: 8650617766663390581}
   - component: {fileID: 8489671343237258132}
+  - component: {fileID: 7024053579004203378}
   m_Layer: 6
   m_Name: DSquare
   m_TagString: Lose
@@ -4942,3 +4943,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7024053579004203378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 358517267345968523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0f2dd65bfbad2a4fb3e7117d97659de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Losing
+  player: {fileID: 0}
+  spawn: {fileID: 0}
+  pc: {fileID: 0}

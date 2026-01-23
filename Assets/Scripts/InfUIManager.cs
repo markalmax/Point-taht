@@ -26,7 +26,7 @@ public class InfUIManager : MonoBehaviour
         if(PlayerPrefs.HasKey("HighScoreInfinity"))
         {
             float highScore = PlayerPrefs.GetFloat("HighScoreInfinity");
-            highScoreText.text = highScore.ToString()+" m";
+            highScoreText.text = highScore.ToString("F1")+" m";
         }
         else
         {
@@ -39,6 +39,7 @@ public class InfUIManager : MonoBehaviour
     }
     void FixedUpdate()
     {
+        timerText.text = player.transform.position.x.ToString("F1") + " m";
         speedText.text = rb.linearVelocity.magnitude.ToString("F1") + " Unit/Sec";
     }
 }
