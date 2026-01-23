@@ -1,4 +1,3 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,11 +13,6 @@ public class Losing : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         spawn = GameObject.FindWithTag("Spawn");
         pc = player.GetComponent<PlayerController>(); 
-    }
-
-    void Update()
-    {
-        
     }
     public void Lose()
     {
